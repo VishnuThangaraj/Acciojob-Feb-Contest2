@@ -52,10 +52,6 @@ button:hover {
   border: 1px solid grey;
 }
 
-td {
-  text-align: left;
-}
-
 /* Others */
 
 .hidden {
@@ -64,4 +60,7 @@ td {
 }
 .table_header {
   text-align: center;
+}
+.left_alignment {
+  text-align: left;
 }

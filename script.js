@@ -32,6 +32,7 @@ function displayStudents(students, tableId = "studentTable_body") {
 
     const nameAndPhotoCell = row.insertCell(1);
     const photo = document.createElement("img");
+    nameAndPhotoCell.className = "left_alignment";
     photo.src = student.img_src;
     photo.alt = `${student.first_name} ${student.last_name} photo`;
     photo.className = "student-photo";
