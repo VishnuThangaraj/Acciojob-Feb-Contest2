@@ -1,5 +1,6 @@
 let studentsData = []; // Variable to store the original student data
-let tempStudentData = []; // Variabel to store the passed students data
+const secondaryTable = document.getElementById("secondary_table");
+const tableHeader = document.getElementsByClassName("table_header");
 // Sorting Buttons
 const sort_ascending = document.getElementById("sort_ascending");
 const sort_descending = document.getElementById("sort_descending");
@@ -9,7 +10,7 @@ const sort_by_class = document.getElementById("sort_by_class");
 const sort_by_gender = document.getElementById("sort_by_gender");
 
 // Fetch Student Data
-fetch("studentData.json")
+fetch("./studentData.json")
   .then((response) => response.json())
   .then((students) => {
     studentsData = students; // Save original data
@@ -18,8 +19,8 @@ fetch("studentData.json")
   .catch((error) => console.error("Error fetching students:", error));
 
 // Function to display students in the table
-function displayStudents(students) {
-  const tableBody = document.getElementById("studentTable_body");
+function displayStudents(students, tableId = "studentTable_body") {
+  const tableBody = document.getElementById(tableId);
   tableBody.innerHTML = ""; // Clear existing content
 
   students.forEach((student) => {
@@ -48,7 +49,13 @@ function displayStudents(students) {
 
 // Function to sort students by name(Ascending)
 sort_ascending.addEventListener("click", function () {
-  console.log("Students Sorted in Ascending Order");
+  if (!secondaryTable.classList.contains("hidden")) {
+    secondaryTable.classList.add("hidden");
+    for (let genderHeaders of tableHeader) {
+      genderHeaders.classList.add("hidden");
+    }
+  }
+
   const sortedStudents = [...studentsData]; // Create a copy of the original data
 
   sortedStudents.sort((a, b) => {
@@ -59,11 +66,18 @@ sort_ascending.addEventListener("click", function () {
   });
 
   displayStudents(sortedStudents);
+  console.log("Students Sorted in Ascending Order");
 });
 
 // Function to sort students by name(Descending)
 sort_descending.addEventListener("click", function () {
-  console.log("Students Sorted in Descending Order");
+  if (!secondaryTable.classList.contains("hidden")) {
+    secondaryTable.classList.add("hidden");
+    for (let genderHeaders of tableHeader) {
+      genderHeaders.classList.add("hidden");
+    }
+  }
+
   const sortedStudents = [...studentsData]; // Create a copy of the original data
 
   sortedStudents.sort((a, b) => {
@@ -74,11 +88,18 @@ sort_descending.addEventListener("click", function () {
   });
 
   displayStudents(sortedStudents);
+  console.log("Students Sorted in Descending Order");
 });
 
 // Function to sort students by Marks
 sort_by_marks.addEventListener("click", function () {
-  console.log("Students Sorted on Basis of Mark");
+  if (!secondaryTable.classList.contains("hidden")) {
+    secondaryTable.classList.add("hidden");
+    for (let genderHeaders of tableHeader) {
+      genderHeaders.classList.add("hidden");
+    }
+  }
+
   const sortedStudents = [...studentsData]; // Create a copy of the original data
 
   sortedStudents.sort((a, b) => {
@@ -86,19 +107,33 @@ sort_by_marks.addEventListener("click", function () {
   });
 
   displayStudents(sortedStudents);
+  console.log("Students Sorted on Basis of Mark");
 });
 
 // Function to sort students by Passing
 sort_by_passing.addEventListener("click", function () {
-  console.log("Students Sorted on Basis of Passing");
+  if (!secondaryTable.classList.contains("hidden")) {
+    secondaryTable.classList.add("hidden");
+    for (let genderHeaders of tableHeader) {
+      genderHeaders.classList.add("hidden");
+    }
+  }
+
   const sortedStudents = [...studentsData].filter((student) => student.passing); // Create a copy of the original data
 
   displayStudents(sortedStudents);
+  console.log("Students Sorted on Basis of Passing");
 });
 
 // Function to sort students by Class
 sort_by_class.addEventListener("click", function () {
-  console.log("Students Sorted on Basis of Class");
+  if (!secondaryTable.classList.contains("hidden")) {
+    secondaryTable.classList.add("hidden");
+    for (let genderHeaders of tableHeader) {
+      genderHeaders.classList.add("hidden");
+    }
+  }
+
   const sortedStudents = [...studentsData]; // Create a copy of the original data
 
   sortedStudents.sort((a, b) => {
@@ -106,14 +141,24 @@ sort_by_class.addEventListener("click", function () {
   });
 
   displayStudents(sortedStudents);
+  console.log("Students Sorted on Basis of Class");
 });
 
-// Function to sort students by Class
+// Function to sort students by Gender
 sort_by_gender.addEventListener("click", function () {
-  console.log("Students Sorted on Basis of Gender");
-  const sortedStudents = [...studentsData].filter(
-    (student) => student.gender == "Male"
+  if (secondaryTable.classList.contains("hidden")) {
+    secondaryTable.classList.remove("hidden");
+    for (let genderHeaders of tableHeader) {
+      genderHeaders.classList.remove("hidden");
+    }
+  }
+
+  const male = [...studentsData].filter((student) => student.gender == "Male");
+  const female = [...studentsData].filter(
+    (student) => student.gender == "Female"
   );
 
-  displayStudents(sortedStudents);
+  displayStudents(male);
+  displayStudents(female, "studentTable_body2");
+  console.log("Students Sorted on Basis of Gender");
 });

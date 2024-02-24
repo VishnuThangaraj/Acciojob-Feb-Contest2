@@ -24,11 +24,16 @@ td {
   border: 1px solid #ddd;
   padding: 8px;
   text-align: left;
+  text-align: center;
 }
 th {
   background-color: #f2f2f2;
 }
 
 .hidden {
-  display: hidden;
+  visibility: hidden;
+  display: none;
+}
+.table_header {
+  text-align: center;
 }
