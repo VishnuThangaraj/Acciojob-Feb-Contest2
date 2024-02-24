@@ -162,3 +162,27 @@ sort_by_gender.addEventListener("click", function () {
   displayStudents(female, "studentTable_body2");
   console.log("Students Sorted on Basis of Gender");
 });
+
+// Function to search and filter students
+function searchStudents() {
+  if (!secondaryTable.classList.contains("hidden")) {
+    secondaryTable.classList.add("hidden");
+    for (let genderHeaders of tableHeader) {
+      genderHeaders.classList.add("hidden");
+    }
+  }
+
+  const searchInput = document
+    .getElementById("student_searchBox")
+    .value.toLowerCase();
+
+  const filteredStudents = studentsData.filter((student) => {
+    const fullName =
+      student.first_name.toLowerCase() + " " + student.last_name.toLowerCase();
+    const email = student.email.toLowerCase();
+
+    return fullName.includes(searchInput) || email.includes(searchInput);
+  });
+
+  displayStudents(filteredStudents);
+}

@@ -28,8 +28,15 @@
 
     <!-- Searching Section -->
     <section id="search_area" class="p-3 d-flex justify-content-around">
-      <input type="textbox" id="student_searchBox" />
-      <button class="btn btn-secondary">Search</button>
+      <input
+        class="border rounded px-5"
+        type="textbox"
+        id="student_searchBox"
+        placeholder="Search by first name, last name, or email"
+      />
+      <button class="btn btn-secondary" onclick="searchStudents()">
+        Search
+      </button>
     </section>
 
     <!-- Sorting Buttons -->

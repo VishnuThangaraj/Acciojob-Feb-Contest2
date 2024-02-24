@@ -13,6 +13,12 @@ header {
   font-size: 30px;
 }
 
+/* SearchBar */
+
+#student_searchBox {
+  width: 90%;
+}
+
 /* Student Table */
 
 table {
@@ -29,6 +35,15 @@ td {
 th {
   background-color: #f2f2f2;
 }
+
+/* Button Animations */
+button:hover {
+  transition: all 0.2s ease-in-out;
+  transform: scale(1.1);
+  box-shadow: 1px 1px rgb(194, 140, 4);
+}
+
+/* Others */
 
 .hidden {
   visibility: hidden;
