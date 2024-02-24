@@ -26,18 +26,22 @@ function displayStudents(students, tableId = "studentTable_body") {
   students.forEach((student) => {
     const row = tableBody.insertRow();
     row.insertCell(0).textContent = student.id;
-    row.insertCell(
-      1
-    ).textContent = `${student.first_name} ${student.last_name}`;
+    // row.insertCell(
+    //   1
+    // ).textContent = `${student.first_name} ${student.last_name}`;
+
+    const nameAndPhotoCell = row.insertCell(1);
+    const photo = document.createElement("img");
+    photo.src = student.img_src;
+    photo.alt = `${student.first_name} ${student.last_name} photo`;
+    photo.className = "student-photo";
+    nameAndPhotoCell.appendChild(photo);
+    nameAndPhotoCell.insertAdjacentHTML(
+      "beforeend",
+      " " + `${student.first_name} ${student.last_name}`
+    );
+
     row.insertCell(2).textContent = student.gender;
-
-    // Add image cell
-    //   const imageCell = row.insertCell(1);
-    //   const image = document.createElement("img");
-    //   image.src = student.image;
-    //   image.alt = student.name + " image";
-    //   imageCell.appendChild(image);
-
     row.insertCell(3).textContent = student.class;
     row.insertCell(4).textContent = student.marks;
     row.insertCell(5).textContent = student.passing;

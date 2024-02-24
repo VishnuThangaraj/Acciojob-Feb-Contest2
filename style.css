@@ -43,6 +43,19 @@ button:hover {
   box-shadow: 1px 1px rgb(194, 140, 4);
 }
 
+.student-photo {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 8px; /* Adjust spacing between photo and name */
+  border: 1px solid grey;
+}
+
+td {
+  text-align: left;
+}
+
 /* Others */
 
 .hidden {
